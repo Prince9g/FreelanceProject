@@ -13,17 +13,17 @@ import UserData from './components/UserData'
 const App = () => {
   return (
     <div className="overflow-x-hidden">
-      {/* <Navbar/> */}
+      <Navbar/>
       {/* <HeroSection/> */}
       {/* <Services/> */}
       {/* <ContactUs/> */}
-      {/* <Footer/> */}
-      {/* <AboutUs/> */}
+      <AboutUs/>
+      <Footer/>
       {/* <Calculator/> */}
       {/* <Myteam/> */}
       {/* <AdminPanel/> */}
       {/* <User/> */}
-      <UserData/>
+      {/* <UserData/> */}
     </div>
   )
 }

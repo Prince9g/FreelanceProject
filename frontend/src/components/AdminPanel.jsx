@@ -1,17 +1,18 @@
 import React from 'react'
+import UserData from './UserData'
 
 const AdminPanel = () => {
   return (
     <div>
-        <h1 className="text-bold text-center text-4xl border-b border-black">Admin Dashboard</h1>
+        <h1 className="text-bold text-center text-4xl mb-4">Admin Dashboard</h1>
         <div className="flex">
-            <div className="w-1/6 flex flex-col items-center gap-4 border-r border-black h-screen">
-              <div className="flex items-center justify-center bg-primary w-full rounded-xl p-2 m-2  hover:bg-[#7a50b5]">View all Leads</div>
-              <div className="flex items-center justify-center bg-primary w-full rounded-xl p-2 m-2 hover:bg-[#7a50b5]">Post Blogs</div>
-              <div className="flex items-center justify-center bg-primary w-full rounded-xl p-2 m-2 hover:bg-[#7a50b5]">Services</div>
+            <div className="flex items-center min-w-full bg-white border border-b border-black shadow-md mb-4">
+              <div className="flex items-center justify-center w-full p-2 bg-slate-200 cursor-pointer">View all Leads</div>
+              <div className="flex items-center justify-center w-full p-2 bg-slate-300 cursor-pointer">Post Blogs</div>
+              <div className="flex items-center justify-center w-full p-2 bg-slate-200 cursor-pointer">Services</div>
             </div>
-            <div></div>
         </div>
+            <UserData/>
     </div>
   )
 }

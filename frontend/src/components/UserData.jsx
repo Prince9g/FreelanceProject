@@ -17,7 +17,7 @@ const UserData = () => {
         }
   return (
     <div>
-      <div>Sort Users: 
+      <div className="flex justify-end items-center gap-2 mr-4"><span className="font-semibold">Sort Users: </span>
         <select
         className="border border-gray-300 rounded-md p-2"
         value={sortOption}

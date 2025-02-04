@@ -4,7 +4,7 @@ const Myteam = () => {
   return (
     <div
   id="team"
-  className="section relative pt-20 pb-8 md:pt-16 bg-white dark:bg-gray-800"
+  className="section relative pt-20 pb-8 md:pt-16 bg-white dark:bg-gray-600"
 >
   <div className="container xl:max-w-6xl mx-auto px-4">
     {/* section header */}
@@ -52,7 +52,7 @@ const Myteam = () => {
     <div className="flex flex-wrap flex-row -mx-4 justify-center">
       <div className="flex-shrink max-w-full px-4 w-2/3 sm:w-1/2 md:w-5/12 lg:w-1/4 xl:px-6">
         <div
-          className="relative overflow-hidden bg-white dark:bg-gray-800 mb-12 hover-grayscale-0 wow fadeInUp"
+          className="relative overflow-hidden bg-white dark:bg-gray-600 mb-12 hover-grayscale-0 wow fadeInUp"
           data-wow-duration="1s"
           style={{
             visibility: "visible",
@@ -167,7 +167,7 @@ const Myteam = () => {
       <div className="flex-shrink max-w-full px-4 w-2/3 sm:w-1/2 md:w-5/12 lg:w-1/4 xl:px-6">
         {/* team block */}
         <div
-          className="relative overflow-hidden bg-white dark:bg-gray-800 mb-12 hover-grayscale-0 wow fadeInUp"
+          className="relative overflow-hidden bg-white dark:bg-gray-600 mb-12 hover-grayscale-0 wow fadeInUp"
           data-wow-duration="1s"
           data-wow-delay=".1s"
           style={{
@@ -283,7 +283,7 @@ const Myteam = () => {
       <div className="flex-shrink max-w-full px-4 w-2/3 sm:w-1/2 md:w-5/12 lg:w-1/4 xl:px-6">
         {/* team block */}
         <div
-          className="relative overflow-hidden bg-white dark:bg-gray-800 mb-12 hover-grayscale-0 wow fadeInUp"
+          className="relative overflow-hidden bg-white dark:bg-gray-600 mb-12 hover-grayscale-0 wow fadeInUp"
           data-wow-duration="1s"
           data-wow-delay=".3s"
           style={{
@@ -399,7 +399,7 @@ const Myteam = () => {
       <div className="flex-shrink max-w-full px-4 w-2/3 sm:w-1/2 md:w-5/12 lg:w-1/4 xl:px-6">
         {/* team block */}
         <div
-          className="relative overflow-hidden bg-white dark:bg-gray-800 mb-12 hover-grayscale-0 wow fadeInUp"
+          className="relative overflow-hidden bg-white dark:bg-gray-600 mb-12 hover-grayscale-0 wow fadeInUp"
           data-wow-duration="1s"
           data-wow-delay=".5s"
           style={{
