@@ -1,30 +1,42 @@
 import React from 'react'
 import Navbar from './components/Navbar'
-import Services from './components/Services'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AboutUs from './components/AboutUs'
 import Calculator from './components/Calculator'
 import Footer from './components/Footer'
-import HeroSection from './components/HeroSection'
 import ContactUs from './components/ContactUs'
 import AdminPanel from './components/AdminPanel'
-import Myteam from './components/Myteam'
-import User from './components/User'
-import UserData from './components/UserData'
+import ServicePage from './components/ServicePage'
+import Home from './components/Home';
 const App = () => {
   return (
-    <div className="overflow-x-hidden">
-      <Navbar/>
-      {/* <HeroSection/> */}
-      {/* <Services/> */}
-      {/* <ContactUs/> */}
-      <AboutUs/>
-      <Footer/>
-      {/* <Calculator/> */}
-      {/* <Myteam/> */}
-      {/* <AdminPanel/> */}
-      {/* <User/> */}
-      {/* <UserData/> */}
-    </div>
+    <Router>
+    <Routes>
+      {/* Routes with Navbar & Footer */}
+      <Route
+        path="/*"
+        element={
+          <>
+            <Navbar />
+            <div className="overflow-x-hidden">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<AboutUs/>} />
+                <Route path="/calculator" element={<Calculator />} />
+                <Route path="/contact" element={<ContactUs />} />
+                <Route path="/servicepage" element={<ServicePage />} />
+                <Route path="*" element={<h1 className="text-center text-2xl">404 - Page Not Found</h1>} />
+              </Routes>
+            </div>
+            <Footer />
+          </>
+        }
+      />
+      
+      {/* Route Without Navbar & Footer */}
+      <Route path="/admin" element={<AdminPanel />} />
+    </Routes>
+  </Router>
   )
 }
 

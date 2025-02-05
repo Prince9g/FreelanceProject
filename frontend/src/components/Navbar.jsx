@@ -3,6 +3,7 @@ import { NavbarMenu } from '../mockData/data'
 import { CiSearch } from "react-icons/ci";
 import { IoMdMenu } from "react-icons/io";
 import ResponsiveMenu from './ResponsiveMenu';
+import { Link } from 'react-router-dom';
 const Navbar = () => {
     const [open, setOpen] = useState(false);
   return (
@@ -20,7 +21,7 @@ const Navbar = () => {
                         NavbarMenu.map((item)=>{
                             return (
                                 <li key={item.id}>
-                                    <a href={item.link} className="inline-block py-1 px-3 hover:text-primary font-semibold">{item.title}</a>
+                                    <Link to={item.link} className="inline-block py-1 px-3 hover:text-primary font-semibold">{item.title}</Link>
                                 </li>
                             );
                         })
@@ -45,7 +46,7 @@ const Navbar = () => {
         </div>
         </nav>
     {/*mobile sidebar section */}
-    <ResponsiveMenu open={open}/>
+    <ResponsiveMenu open={open} setOpen={setOpen}/>
     </>
   )
 }
