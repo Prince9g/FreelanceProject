@@ -10,7 +10,7 @@ const Navbar = () => {
   return (
     <>
         <nav>
-        <div className="container flex justify-around md:justify-between items-center py-8">
+        <div className="container flex justify-around md:justify-between items-center pt-8">
             {/* logo section */}
             <div className="flex items-center gap-2 py-8 w-20 h-20">
                 <img src="https://img.freepik.com/free-vector/bird-colorful-logo-gradient-vector_343694-1365.jpg" className="w-20 h-20"/>
@@ -29,7 +29,10 @@ const Navbar = () => {
                     }
                 </ul>
             </div>
-            <div className="font-semibold italic text-xl md:hidden">Company Name</div>
+            <div className="flex flex-col font-semibold italic text-xl md:hidden">
+                <div className="text-center">INFINITY</div>
+                <div className="text-sm text-gray-300">luxury packaging solutions</div>
+            </div>
             {/* Icons section */}
             <div className="flex gap-5 justify-center items-center md:block">
             <div>
