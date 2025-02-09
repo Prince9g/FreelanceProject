@@ -19,6 +19,7 @@ const ResponsiveMenu = ({ open, setOpen}) => {
             <ul className="flex flex-col justify-center items-center gap-10">
                 <Link to="/" onClick={handleClick}><li>Home</li></Link>
                 <Link to="/servicepage" onClick={handleClick}><li>Services</li></Link>
+                <Link to="/blogs" onClick={handleClick}><li>Blogs</li></Link>
                 <Link to="/calculator" onClick={handleClick}><li>Calculator</li></Link>
                 <Link to="/about" onClick={handleClick}><li>About</li></Link>
                 <Link to="/contact" onClick={handleClick}><li>Contact Us</li></Link>

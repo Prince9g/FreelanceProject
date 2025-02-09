@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { NavbarMenu } from '../mockData/data'
 import { CiSearch } from "react-icons/ci";
 import { IoMdMenu } from "react-icons/io";
+import { VscClose } from "react-icons/vsc";
 import ResponsiveMenu from './ResponsiveMenu';
 import { Link } from 'react-router-dom';
 const Navbar = () => {
@@ -40,7 +41,7 @@ const Navbar = () => {
             <div className="md:hidden" onClick={()=>{
                 setOpen(!open)
             }}>
-                <IoMdMenu className="text-4xl"/>
+                {open ? <VscClose className="text-4xl"/> : <IoMdMenu className="text-4xl"/>}
             </div>
             </div>
         </div>

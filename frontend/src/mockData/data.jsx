@@ -10,6 +10,11 @@ export const NavbarMenu = [
         link:'/servicepage'
     },
     {
+        id:6,
+        title:"Blog",
+        link:'/blogs'
+    },
+    {
         id:3,
         title:"Calculator",
         link:'/calculator'

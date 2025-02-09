@@ -8,6 +8,7 @@ import ContactUs from './components/ContactUs'
 import AdminPanel from './components/AdminPanel'
 import ServicePage from './components/ServicePage'
 import Home from './components/Home';
+import Blogs from './components/Blogs';
 const App = () => {
   return (
     <Router>
@@ -25,6 +26,7 @@ const App = () => {
                 <Route path="/calculator" element={<Calculator />} />
                 <Route path="/contact" element={<ContactUs />} />
                 <Route path="/servicepage" element={<ServicePage />} />
+                <Route path="/blogs" element={<Blogs />} />
                 <Route path="*" element={<h1 className="text-center text-2xl">404 - Page Not Found</h1>} />
               </Routes>
             </div>
