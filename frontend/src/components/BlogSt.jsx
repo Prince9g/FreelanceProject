@@ -1,6 +1,6 @@
 import React from 'react'
 
-const BlogStructure = ({name, description, image}) => {
+const BlogSt = ({name, description, image}) => {
   return (
     <div className="md:flex justify-center gap-4 border-2 border-gray-200 p-4 rounded-xl">
       <div>
@@ -14,4 +14,4 @@ const BlogStructure = ({name, description, image}) => {
   )
 }
 
-export default BlogStructure
+export default BlogSt;
