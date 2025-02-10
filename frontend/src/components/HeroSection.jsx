@@ -10,7 +10,7 @@ const imgs = [
   image1, image2, image3, image4, image5, image6
 ];
 
-const ONE_SECOND = 1000;
+const ONE_SECOND = 500;
 const AUTO_DELAY = ONE_SECOND * 10;
 const DRAG_BUFFER = 50;
 
@@ -94,7 +94,7 @@ const Images = ({ imgIndex }) => {
               scale: imgIndex === idx ? 0.95 : 0.85,
             }}
             transition={SPRING_OPTIONS}
-            className="h-[40vh] w-full md:h-[70vh] shrink-0 rounded-xl white object-contain"
+            className="h-[40vh] w-full md:h-[80vh] shrink-0 rounded-xl white object-contain"
           />
         );
       })}

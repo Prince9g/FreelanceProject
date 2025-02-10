@@ -1,7 +1,8 @@
 import express, { Router } from 'express';
 import dotenv from 'dotenv';
 import Connectdb from './utils/dbConnection.js';
-import router from './routes/data.routes.js';
+import adminrouter from './routes/data.routes.js';
+import blogrouter from './routes/blog.routes.js';
 import cors from 'cors';
 dotenv.config();
 const app = express();
@@ -15,7 +16,8 @@ const corsOption =  {
 }
 
 app.use(cors(corsOption));
-app.use('/admin', router);
+app.use('/admin', adminrouter);
+app.use('/blog', blogrouter);
 const PORT = process.env.PORT;
 
 app.listen(PORT,()=>{
