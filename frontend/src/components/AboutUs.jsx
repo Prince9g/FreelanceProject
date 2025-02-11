@@ -1,7 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Myteam from './Myteam';
-
 const AboutUs = () => {
+useEffect(() => {
+    // Scroll to bottom first
+    window.scrollTo(0, document.body.scrollHeight);
+    
+    // Then smoothly scroll back to top
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 100); // Small delay to ensure bottom load first
+  }, []);
   const info = [
     {
       title: "Our Services",

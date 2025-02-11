@@ -1,7 +1,7 @@
-import image1 from "../assets/1.png";
-import image2 from "../assets/2.png";
-import image3 from "../assets/3.png";
-import image4 from "../assets/4.png";
+import image1 from "../assets/st1.jpeg";
+import image2 from "../assets/c2.jpeg";
+import image3 from "../assets/pb1.jpeg";
+import image4 from "../assets/sal2.jpeg";
 export const ServicesData = [
     {
         id:1,

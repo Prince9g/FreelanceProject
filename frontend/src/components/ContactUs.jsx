@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import image from '../assets/infinity1.jpeg'
 import axios from "axios";
 
 const ContactUs = () => {
@@ -188,8 +188,8 @@ const ContactUs = () => {
         {/* Right side: Image */}
         <div className="mt-4 md:mt-0 md:w-1/2">
           <img
-            src="https://www.mcpackagings.com/wp-content/uploads/2022/12/eco-paper-double-door-perfume-box.jpg"
-            className="h-full"
+            src={image}
+            className="h-full rounded-lg shadow-lg"
             alt="prefumeImage"
           />
         </div>

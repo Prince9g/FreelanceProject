@@ -1,5 +1,5 @@
 import React from 'react'
-
+import logo from '../assets/logo.png'
 const Footer = () => {
   return (
     <footer className="bg-white" aria-labelledby="footer-heading">
@@ -10,9 +10,9 @@ const Footer = () => {
     <div className="xl:grid xl:grid-cols-3 xl:gap-8">
       <div className="space-y-8">
         <img
-          className="h-20"
-          src="https://img.freepik.com/free-vector/bird-colorful-logo-gradient-vector_343694-1365.jpg"
-          alt="Company name"
+          className="h-20 md:w-[40%]"
+          src={logo}
+          alt="Infinity packaging Solutions"
         />
         <p className="text-sm leading-6 text-gray-600">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, illo.

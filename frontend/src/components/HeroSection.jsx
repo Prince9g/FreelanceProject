@@ -87,8 +87,9 @@ const Images = ({ imgIndex }) => {
             key={idx}
             style={{
               backgroundImage: `url(${imgSrc})`,
-              backgroundSize: "cover",
+              backgroundSize: "100% 100%",
               backgroundPosition: "center",
+              backgroundRepeat: "no-repeat"
             }}
             animate={{
               scale: imgIndex === idx ? 0.95 : 0.85,

@@ -5,6 +5,7 @@ import { IoMdMenu } from "react-icons/io";
 import { VscClose } from "react-icons/vsc";
 import ResponsiveMenu from './ResponsiveMenu';
 import { Link } from 'react-router-dom';
+import logo from '../assets/logo.png'
 const Navbar = () => {
     const [open, setOpen] = useState(false);
   return (
@@ -12,8 +13,8 @@ const Navbar = () => {
         <nav>
         <div className="container flex justify-around md:justify-between items-center pt-8">
             {/* logo section */}
-            <div className="flex items-center gap-2 py-8 w-20 h-20">
-                <img src="https://img.freepik.com/free-vector/bird-colorful-logo-gradient-vector_343694-1365.jpg" className="w-20 h-20"/>
+            <div className="flex items-center gap-2 py-8 w-30 md:w-[15%] h-20">
+                <img src={logo} className="w-20 h-20 md:w-full md:h-30"/>
             </div>
             {/* Menu section */}
             <div className="hidden md:block">
