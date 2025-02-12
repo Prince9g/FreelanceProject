@@ -1,5 +1,6 @@
 import React from 'react'
 import UserData from './UserData'
+import PostBlog from './PostBlog'
 
 const AdminPanel = () => {
   return (
@@ -12,7 +13,8 @@ const AdminPanel = () => {
               <div className="flex items-center justify-center w-full p-2 bg-slate-200 cursor-pointer">Services</div>
             </div>
         </div>
-            <UserData/>
+            {/* <UserData/> */}
+            <PostBlog/>
     </div>
   )
 }
