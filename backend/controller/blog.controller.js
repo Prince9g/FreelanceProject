@@ -23,7 +23,6 @@ export const addData = async (req, res) => {
 
     // Optimize image
     const optimizedImageBuffer = await sharp(req.file.buffer)
-      .resize({ width: 800, height: 800, fit: 'inside' })
       .jpeg({ quality: 80 })
       .toBuffer();
 
@@ -46,3 +45,9 @@ export const addData = async (req, res) => {
     res.status(409).json({ success: false, message: "Data not saved", error: error.message });
   }
 };
+
+export const deleteBlog = (req, res) => {
+  Blog.findByIdAndDelete(req.params.id)
+    .then(() => res.json({ success: true, message: "Blog deleted successfully" }))
+    .catch((err) => res.status(400).json({ success: false, message: "Blog not deleted", error: err.message }));
+}
