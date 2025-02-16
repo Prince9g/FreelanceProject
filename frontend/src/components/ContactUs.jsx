@@ -1,31 +1,37 @@
 import React, { useEffect, useState } from "react";
-import image from '../assets/infinity1.jpeg'
+import image from '../assets/infinity1.jpeg';
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ContactUs = () => {
   // State to hold form data
   const [formData, setFormData] = useState({
-    fullName: "",
+    fullname: "",
     phone: "",
     email: "",
     message: "",
     address: "",
     country: "",
   });
-  const [countries, setCountries] = useState([]);
 
+  const [countries, setCountries] = useState([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Fetch countries list when component mounts
   useEffect(() => {
     axios
       .get("https://restcountries.com/v3.1/all")
       .then((response) => {
         const countryOptions = response.data.map((country) => ({
-          value: country.cca2,
+          value: country.name.common,
           label: country.name.common,
         }));
         setCountries(countryOptions);
       })
       .catch((error) => console.error("Error fetching countries:", error));
   }, []);
+
   // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,32 +41,30 @@ const ContactUs = () => {
     }));
   };
 
-  // Handle form submission
-  const submitForm = (event) => {
-    event.preventDefault(); // Prevent the default form submission behavior
-    sendEmail(); // Call the sendEmail function to send email
-  };
-  
-  // Function to open email client
-  const sendEmail = () => {
-    const { fullName, phone, email, message, address, country } = formData;
-    const recipientEmail = "#";
-    const mailtoLink = `mailto:${recipientEmail}?subject=Quote Request from ${encodeURIComponent(
-      fullName
-    )}&body=Full Name: ${encodeURIComponent(
-      fullName
-    )}%0APhone: ${encodeURIComponent(phone)}%0AEmail: ${encodeURIComponent(
-      email
-    )}%0AMessage: ${encodeURIComponent(
-      message
-    )}%0AAddress: ${encodeURIComponent(address)}%0ACountry: ${encodeURIComponent(country)}`;
+  // Handle form submission (send data to backend)
+  const submitForm = async (event) => {
+    event.preventDefault();
+    setIsSubmitting(true); // Show loading state
 
-    // Open the default email client with the mailto link
-    window.location.href = mailtoLink; // This should be triggered by user gesture
+    try {
+      const response = await axios.post("http://localhost:8080/admin/contact", formData, {
+        headers: { "Content-Type": "application/json" },
+      });
+
+      console.log("Response from server:", response.data);
+      toast.success(response.data.message);
+      setFormData({ fullname: "", phone: "", email: "", message: "", address: "", country: "" }); // Reset form
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("Error submitting form. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <div className="m-4">
+      <ToastContainer position="top-right" autoClose={3000} theme="colored" />
       {/* Top Section: Form and Image */}
       <div className="flex flex-col md:justify-around md:flex-row">
         {/* Left side: Form */}
@@ -74,96 +78,42 @@ const ContactUs = () => {
 
           <form onSubmit={submitForm}>
             <div className="flex items-center mb-5">
-              <label htmlFor="fullName" className="w-[20%]">
-                Full name *
-              </label>
-              <input
-                type="text"
-                id="fullName"
-                name="fullName"
-                placeholder="Enter your full name"
-                required
-                value={formData.fullName}
-                onChange={handleChange}
-                className="border rounded-md p-2 w-full"
-              />
+              <label htmlFor="fullname" className="w-[20%]">Full name *</label>
+              <input type="text" id="fullname" name="fullname" placeholder="Enter your full name"
+                required value={formData.fullname} onChange={handleChange} className="border rounded-md p-2 w-full" />
             </div>
 
             <div className="flex items-center mb-5">
-              <label htmlFor="phone" className="w-[20%]">
-                Phone Number
-              </label>
-              <input
-                type="tel"
-                id="phone"
-                name="phone"
-                placeholder="Enter your phone number"
-                value={formData.phone}
-                onChange={handleChange}
-                className="border rounded-md p-2 w-full"
-              />
+              <label htmlFor="phone" className="w-[20%]">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="Enter your phone number"
+                value={formData.phone} onChange={handleChange} className="border rounded-md p-2 w-full" />
             </div>
 
             <div className="flex items-center mb-5">
-              <label htmlFor="email" className="w-[20%]">
-                Email *
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Enter your email"
-                required
-                value={formData.email}
-                onChange={handleChange}
-                className="border rounded-md p-2 w-full"
-              />
+              <label htmlFor="email" className="w-[20%]">Email *</label>
+              <input type="email" id="email" name="email" placeholder="Enter your email"
+                required value={formData.email} onChange={handleChange} className="border rounded-md p-2 w-full" />
             </div>
 
             <div className="flex items-center mb-5">
-              <label htmlFor="message" className="w-[20%]">
-                Message
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                placeholder="Enter your message"
-                rows="4"
-                value={formData.message}
-                onChange={handleChange}
-                className="border rounded-md p-2 w-full"
-              />
+              <label htmlFor="message" className="w-[20%]">Message</label>
+              <textarea id="message" name="message" placeholder="Enter your message"
+                rows="4" value={formData.message} onChange={handleChange} className="border rounded-md p-2 w-full" />
             </div>
 
             <div className="flex items-center gap-2 mb-5">
-              <label htmlFor="address" className="w-[18%]">
-                Address
-              </label>
-              <input
-                type="text"
-                id="address"
-                name="address"
-                placeholder="Enter your address"
-                value={formData.address}
-                onChange={handleChange}
-                className="border rounded-md p-2 w-full"
-              />
+              <label htmlFor="address" className="w-[18%]">Address</label>
+              <input type="text" id="address" name="address" placeholder="Enter your address"
+                value={formData.address} onChange={handleChange} className="border rounded-md p-2 w-full" />
             </div>
+
             <div className="flex items-center gap-2 mb-5">
-              <label htmlFor="country" className="w-[18%]">
-                Country
-              </label>
-              <select
-                id="country"
-                onChange={handleChange}
-                className="border rounded-md p-2 w-full"
-              >
-                <option value={formData.country}>Select a country</option>
-                {/* Default option */}
+              <label htmlFor="country" className="w-[18%]">Country*</label>
+              <select id="country" name="country" value={formData.country} onChange={handleChange}
+                required className="border rounded-md p-2 w-full">
+                <option value="">Select a country</option>
                 {countries.map((country) => (
-                  <option key={country.value} value={country.value}>
-                    {country.label}
-                  </option>
+                  <option key={country.value} value={country.value}>{country.label}</option>
                 ))}
               </select>
             </div>
@@ -176,22 +126,16 @@ const ContactUs = () => {
               </label>
             </div>
 
-            <button
-              type="submit"
-              className="bg-secondary p-3 rounded-full hover:bg-[#c37662]"
-            >
-              GET A QUOTE
+            <button type="submit" className="bg-secondary p-3 rounded-full hover:bg-[#c37662]"
+              disabled={isSubmitting}>
+              {isSubmitting ? "Submitting..." : "GET A QUOTE"}
             </button>
           </form>
         </div>
 
         {/* Right side: Image */}
         <div className="mt-4 md:mt-0 md:w-1/2">
-          <img
-            src={image}
-            className="h-full rounded-lg shadow-lg"
-            alt="prefumeImage"
-          />
+          <img src={image} className="h-full rounded-lg shadow-lg" alt="Contact Us" />
         </div>
       </div>
     </div>

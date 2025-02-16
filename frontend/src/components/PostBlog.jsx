@@ -38,7 +38,7 @@ const PostBlog = () => {
             withCredentials: true
           });
           if(res.data.success){
-            toast.success(res.data.success)
+            toast.success(res.data.message);
             setTitle("");
             setContent("");
             setImageURL("");
@@ -51,7 +51,7 @@ const PostBlog = () => {
   
   return (
     <div className="mt-10 flex flex-col justify-center items-center h-screen">
-        
+        <ToastContainer position="top-right" autoClose={3000} theme="colored" />
         <div className="shadow-lg flex flex-col justify-center w-[70%] items-center border border-gray-300 rounded-md p-4">
       {/* image upload section  */}
       <div

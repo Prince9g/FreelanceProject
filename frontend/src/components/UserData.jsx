@@ -1,41 +1,61 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react';
 import User from './User';
-// {onSortChange}
+import axios from 'axios';
+
 const UserData = () => {
-    const data = [
-        { fullname: "John Doe", mobilenumber:"+917937723423",email:"john@mail.com", country: "USA" , entryDate: "2024-02-01"},
-        { fullname: "Casie Dior", mobilenumber:"+917933423423",email:"cohn@mail.com", country: "UK" , entryDate: "2024-03-01"},
-        { fullname: "Json Atle", mobilenumber:"+918937723423",email:"jsohn@mail.com", country: "UAE" , entryDate: "2024-02-05" }
-      ];
-        const [sortOption, setSortOption] = useState("");
-      
-        const handleSortChange = (event) => {
-          const selectedOption = event.target.value;
-          setSortOption(selectedOption);
-          console.log(selectedOption);
-        //   onSortChange(selectedOption); // Call the parent function with selected value
-        }
+  const [users, setUsers] = useState([]); // Store original fetched users
+  const [sortedUsers, setSortedUsers] = useState([]); // Store sorted users
+  const [sortOption, setSortOption] = useState("");
+
+  // Fetch data once when component mounts
+  useEffect(() => {
+    axios.get("http://localhost:8080/admin/getuser")
+      .then((res) => {
+        setUsers(res.data); // Store original data
+        setSortedUsers(res.data); // Also set sorted data initially
+      })
+      .catch((error) => console.log(error));
+  }, []); // Run only once
+
+  // Sort users whenever sortOption changes
+  useEffect(() => {
+    let sorted = [...users]; // Copy users array
+
+    if (sortOption === "name") {
+      sorted.sort((a, b) => a.fullname.localeCompare(b.fullname));
+    } else if (sortOption === "old") {
+      sorted.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)); // Oldest first
+    } else if (sortOption === "new") {
+      sorted.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // Newest first
+    } else if (sortOption === "country") {
+      sorted.sort((a, b) => a.country.localeCompare(b.country));
+    }
+
+    setSortedUsers(sorted); // Update displayed users
+  }, [sortOption, users]); // Re-run sorting when sortOption or users change
+
   return (
     <div>
-      <div className="flex justify-end items-center gap-2 mr-4"><span className="font-semibold">Sort Users: </span>
+      <div className="flex justify-end items-center gap-2 mr-4">
+        <span className="font-semibold">Sort Users: </span>
         <select
-        className="border border-gray-300 rounded-md p-2"
-        value={sortOption}
-        onChange={handleSortChange}
+          className="border border-gray-300 rounded-md p-2"
+          value={sortOption}
+          onChange={(e) => setSortOption(e.target.value)}
         >
-        <option value="">Sort By</option>
-        <option value="name">Sort by Names</option>
-        <option value="new">Sort by New Entries</option>
-        <option value="old">Sort by Old Entries</option>
-        <option value="country">Sort by Country</option>
+          <option value="">Sort By</option>
+          <option value="name">Sort by Names</option>
+          <option value="new">Sort by New Entries</option> {/* Sort latest entries first */}
+          <option value="old">Sort by Old Entries</option> {/* Sort oldest entries first */}
+          <option value="country">Sort by Country</option>
         </select>
       </div>
-      {/* Display sorted data here */}
+      {/* Pass sorted data to User component */}
       <div>
-        <User data={data} />
+        <User data={sortedUsers} />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default UserData
+export default UserData;
