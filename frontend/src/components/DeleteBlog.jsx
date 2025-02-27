@@ -1,14 +1,16 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 
-const DeleteBlog = ({ name, description, image , id}) => {
+
+const DeleteBlog = ({ name, description, image , id, manageBlogs}) => {
   const [showFull, setShowFull] = useState(false);
   const previewText = description.length > 300 ? description.substring(0, 300) + "..." : description;
   const onDeleteClick = () =>{
     try {
         const res = axios.delete(`http://localhost:8080/blog/${id}`);
+        manageBlogs(id);
     } catch (error) {
-        
+        console.log(error);
     }
   }
     return (

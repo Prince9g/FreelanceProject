@@ -15,6 +15,7 @@ import ContactUs from './components/ContactUs.jsx'
 import ServicePage from './components/ServicePage.jsx'
 import SignUp from './components/SignUp.jsx'
 import Signin from './components/Signin.jsx'
+import ProtectedRoute from './components/ProtectedRoute.jsx'
 const router = createBrowserRouter([
   {
     path:'/', element: <App/> , children:[
@@ -24,16 +25,25 @@ const router = createBrowserRouter([
       {path:'/contact', element:<ContactUs/>},
       {path:'/blogs', element:<Blogs/>},
       {path:'/servicepage', element:<ServicePage/>},
-      {path:'/sign-in', element:<Signin/>},
     ]
   },
   {
-    path:'/admin', element:<AdminPanel/>, children:[
-      {path:'', element:<UserData/>},
-      {path:'post-blog', element:<PostBlog/>},
-      {path:'manage', element:<ManageBlogs/>},
-      {path:'view-users', element:<UserData/>}
+    path: '/admin',
+    element: <ProtectedRoute />, // Protected Route Wrapper
+    children: [
+      {path:'', element: <AdminPanel/>, children:[
+        {path: '', element: <UserData />},
+        { path: 'post-blog', element: <PostBlog /> },
+        { path: 'manage', element: <ManageBlogs /> },
+        { path: 'view-users', element: <UserData /> },
+      ]},
     ]
+  },
+  {
+    path :'/sign-up', element:<SignUp/>,
+  },
+  {
+    path :'/sign-in', element:<Signin/>,
   }
 ]);
 createRoot(document.getElementById('root')).render(
